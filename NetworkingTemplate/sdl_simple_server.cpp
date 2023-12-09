@@ -209,16 +209,18 @@ void handleDrawing(SDL_Renderer* renderer) {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        SDL_Rect squareRect = { squareX, squareY, SQUARE_SIZE, SQUARE_SIZE };
-        SDL_SetRenderDrawColor(renderer, serverRed, serverGreen, serverBlue, 255);
-        SDL_RenderFillRect(renderer, &squareRect);
-
         std::cout << "\nClient Position: x=" << client_xpos << ", y=" << client_ypos << std::endl;
         if (client_xpos != 0 || client_ypos != 0) {
             SDL_Rect squareRect_client = { client_xpos, client_ypos, SQUARE_SIZE, SQUARE_SIZE };
             SDL_SetRenderDrawColor(renderer, clientRed, clientGreen, clientBlue, 255);
             SDL_RenderFillRect(renderer, &squareRect_client);
         }
+
+        SDL_Rect squareRect = { squareX, squareY, SQUARE_SIZE, SQUARE_SIZE };
+        SDL_SetRenderDrawColor(renderer, serverRed, serverGreen, serverBlue, 255);
+        SDL_RenderFillRect(renderer, &squareRect);
+
+        
 
         SDL_RenderPresent(renderer);
     }
@@ -231,7 +233,7 @@ int main(int argc, char* argv[]) {
     }
 
     SDL_Window* window = SDL_CreateWindow(
-        "Movable Squares",
+        "Safak Onol Networking A2 - Data Exchange using JSon Serialize methods - SERVER WINDOW",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         WINDOW_WIDTH,

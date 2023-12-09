@@ -8,7 +8,6 @@
 #include "../NetworkingTemplate/rapidjson/writer.h"
 #include "../NetworkingTemplate/rapidjson/stringbuffer.h"
 
-
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 const int SQUARE_SIZE = 50;
@@ -155,7 +154,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    SDL_Window* window = SDL_CreateWindow("Client Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("Safak Onol Networking A2 - Data Exchange using JSon Serialize methods - CLIENT WINDOW", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     if (!window || !renderer) {
