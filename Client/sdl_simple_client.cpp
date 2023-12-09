@@ -14,11 +14,11 @@ const int SQUARE_SIZE = 50;
 int squareX;
 int squareY;
 
-int x = 0;
-int y = 0;
-int r = 0;
-int g = 0;
-int b = 0;
+//int x = 0;
+//int y = 0;
+//int r = 0;
+//int g = 0;
+//int b = 0;
 
 int server_xpos;
 int server_ypos;
@@ -67,29 +67,6 @@ std::string serializeSquarePos(int x, int y, int r, int g, int b) {
     return s.GetString();
 }
 
-// Function to handle sending the client position to the server
-void sendPosition(UDPsocket udpSocket, IPaddress serverIP) {
-    while (bRun) {
-        std::string msg_data = serializeSquarePos(squareX, squareY, clientRed, clientGreen, clientBlue);
-
-        // Create a UDP packet to send the position to the server
-        UDPpacket* packet = SDLNet_AllocPacket(msg_data.size() + 1);
-        if (packet) {
-            packet->address = serverIP;
-            packet->len = msg_data.size();
-            memcpy(packet->data, msg_data.c_str(), msg_data.size());
-
-            if (SDLNet_UDP_Send(udpSocket, -1, packet) == 0) {
-                std::cerr << "SDLNet_UDP_Send error: " << SDLNet_GetError() << std::endl;
-            }
-
-            SDLNet_FreePacket(packet);
-        }
-
-        SDL_Delay(16); // Cap the sending rate to approximately 60 FPS
-    }
-}
-
 // Function to deserialize JSON to square position
 bool deserializeSquarePos(const std::string& json, int& x, int& y, int& r, int& g, int& b) {
     rapidjson::Document doc;
@@ -121,6 +98,30 @@ bool deserializeSquarePos(const std::string& json, int& x, int& y, int& r, int& 
 
     return true;
 }
+
+// Function to handle sending the client position to the server
+void sendPosition(UDPsocket udpSocket, IPaddress serverIP) {
+    while (bRun) {
+        std::string msg_data = serializeSquarePos(squareX, squareY, clientRed, clientGreen, clientBlue);
+
+        // Create a UDP packet to send the position to the server
+        UDPpacket* packet = SDLNet_AllocPacket(msg_data.size() + 1);
+        if (packet) {
+            packet->address = serverIP;
+            packet->len = msg_data.size();
+            memcpy(packet->data, msg_data.c_str(), msg_data.size());
+
+            if (SDLNet_UDP_Send(udpSocket, -1, packet) == 0) {
+                std::cerr << "SDLNet_UDP_Send error: " << SDLNet_GetError() << std::endl;
+            }
+
+            SDLNet_FreePacket(packet);
+        }
+
+        SDL_Delay(16); // Cap the sending rate to approximately 60 FPS
+    }
+}
+
 
 
 // Function to handle receiving data from the server
