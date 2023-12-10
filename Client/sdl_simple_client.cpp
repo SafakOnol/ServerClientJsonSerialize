@@ -14,11 +14,11 @@ const int SQUARE_SIZE = 50;
 int squareX;
 int squareY;
 
-//int x = 0;
-//int y = 0;
-//int r = 0;
-//int g = 0;
-//int b = 0;
+int x = 0;
+int y = 0;
+int r = 0;
+int g = 0;
+int b = 0;
 
 int server_xpos;
 int server_ypos;
