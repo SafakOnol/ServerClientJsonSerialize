@@ -13,19 +13,14 @@
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 const int SQUARE_SIZE = 50;
+
+// server player
 int squareX;
 int squareY;
 
+// client player
 int client_xpos;
 int client_ypos;
-
-struct square_pos {
-    int xpos;
-    int ypos;
-};
-
-square_pos server_square;
-square_pos client_square;
 
 // Program running bool (Graceful Exit method)
 bool bRun = true;
@@ -203,8 +198,8 @@ void handleDrawing(SDL_Renderer* renderer) {
                 }
             }
         }
-        server_square.xpos = squareX;
-        server_square.ypos = squareY;
+        //server_square.xpos = squareX;
+        //server_square.ypos = squareY;
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);

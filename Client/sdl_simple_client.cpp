@@ -23,14 +23,6 @@ int b = 0;
 int server_xpos;
 int server_ypos;
 
-struct square_pos {
-    int xpos;
-    int ypos;
-};
-
-square_pos client_square;
-square_pos server_square;
-
 // Program running bool (Graceful Exit method)
 bool bRun = true;
 
@@ -256,9 +248,6 @@ int main(int argc, char* argv[]) {
                 }
             }
         }
-
-        client_square.xpos = squareX;
-        client_square.ypos = squareY;
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
